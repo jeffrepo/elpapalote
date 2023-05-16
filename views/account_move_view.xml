@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_move_view_form_elpapalote" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.elpapalote</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <button name="action_post" position="after">
+              <button name="calcular_descuento_general" string="Calcular descuento" class="oe_highlight" type="object" data-hotkey="d"
+                attrs="{'invisible':['|', ('state', 'in', ['posted','cancel']), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"/>
+            </button>
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="descuento_general"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
